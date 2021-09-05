@@ -1,9 +1,10 @@
-<h1>ユーザー詳細</h1>
-
-<h2><%= @user.email %></h2>
+<h2>
+    <span class="back"><%= link_to "<", users_path %></span><%= @user.username %></h2>
 
 <% if @user.id == current_user.id %>
-
+<li>
+    <%= link_to 'プロフィール変更', edit_user_registration_path %>
+</li>
 <% else %>
 <% if @isRoom == true %>
 <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
@@ -16,5 +17,3 @@
     <% end %>
     <% end %>
     <% end %>
-
-    <%= link_to "ユーザー一覧に戻る", users_path %>
