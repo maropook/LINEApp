@@ -1,49 +1,75 @@
 <div class="container">
+    <div class="sideber"></div>
+    <div class="iphone">
+        <div class="top_header"></div>
+        <div class="buttom_header">
+            <div class="hormbutton"></div>
+        </div>
+
+    </div>
     <div class="my-container">
+
 
         <% @entries.each do |e| %>
 
 
         <% if current_user != e.user%>
+        <div class="header">
 
-
-        <h3><span class="back"><%= link_to "< ", users_path %></span><a
-                href="/users/<%= e.user.id %>"><%= e.user.username%></a></h3>
-
+            <h3><span class="back"><%= link_to "　< ", users_path %></span><a
+                    href="/users/<%= e.user.id %>"><%= e.user.username%></a></h3>
+        </div>
         <% end %>
         <% end %>
 
-        <hr>
+
+
+
         <% if @messages.present? %>
-        <% @messages.each do |m| %>
-        <% if m.user==current_user %>
-        <div class="myself">
-            <span><%= m.content %></span>
+        <div class="line-bc">
+            <% @messages.each do |m| %>
+            <% if m.user!=current_user %>
+
+            <div class="balloon6">
+                <div class="faceicon">
+                    <img src=<%= m.user.image %>>
+                </div>
+                <div class="chatting">
+                    <div class="says">
+                        <p><%= m.content %></p>
+                    </div>
+                </div>
+            </div>
+
+
+            <% else %>
+            <div class="mycomment">
+                <p>
+                    <%= m.content %>
+                </p>
+            </div>
+
+            <% end %>
+
+            <% end %>
         </div>
 
-
-        <% else %>
-        <div class="other">
-            <span><%= m.content %></span>
-        </div>
-
-        <% end %>
-        <hr>
-
-        <% end %>
         <% else %>
         <h3 class="text-center">メッセージはまだありません</h3>
         <% end %>
 
-        <div class="room_form">
+
+
+    </div>
+    <div class="room_form">
+        <div class="form">
             <%= form_for @message do |f| %>
             <%= f.text_field :content, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
             <%= f.hidden_field :room_id, :value => @room.id %>
             <br>
             <%= f.submit "投稿する" %>
             <% end %>
-
         </div>
-
     </div>
+
 </div>

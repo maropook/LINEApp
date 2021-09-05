@@ -1,19 +1,34 @@
-<h2>
-    <span class="back"><%= link_to "<", users_path %></span><%= @user.username %></h2>
+<div class="container">
+    <div class="sideber"></div>
+    <div class="iphone">
+        <div class="top_header"></div>
 
-<% if @user.id == current_user.id %>
-<li>
-    <%= link_to 'プロフィール変更', edit_user_registration_path %>
-</li>
-<% else %>
-<% if @isRoom == true %>
-<p><a href="/rooms/<%= @roomId %>">チャットへ</a>
-    <% else %>
-    <%= form_for @room do |f| %>
-    <%= fields_for @entry do |e| %>
-    <%= e.hidden_field :user_id, :value=> @user.id %>
-    <% end %>
-    <%= f.submit "チャットを始める" %>
-    <% end %>
-    <% end %>
-    <% end %>
+        <div class="buttom_header">
+            <div class="hormbutton"></div>
+        </div>
+
+    </div>
+    <div class="home-container">
+
+        <h2>
+            <span class="back"><%= link_to "<", users_path %></span><%= @user.username %></h2>
+
+        <% if @user.id == current_user.id %>
+        <p>
+            <%= link_to 'プロフィール変更', edit_user_registration_path %>
+            <p>
+                <% else %>
+                <% if @isRoom == true %>
+                <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+                    <% else %>
+                    <%= form_for @room do |f| %>
+                    <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :user_id, :value=> @user.id %>
+                    <% end %>
+                    <%= f.submit "チャットを始める" %>
+                    <% end %>
+                    <% end %>
+                    <% end %>
+    </div>
+
+</div>

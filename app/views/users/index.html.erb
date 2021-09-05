@@ -1,19 +1,34 @@
-<% if user_signed_in? %>
-<img src=<%= current_user.image %> class="icon_image">
-<a href="/users/<%= current_user.id %>"><%= current_user.username %></a>
-<hr>
-<h2>トーク</h2>
-<% @users.each do |u| %>
-<% if current_user!=u%>
+<div class="container">
+    <div class="sideber"></div>
+    <div class="iphone">
+        <div class="top_header"></div>
+
+        <div class="buttom_header">
+            <div class="hormbutton"></div>
+        </div>
+
+    </div>
+    <div class="home-container">
+
+        <% if user_signed_in? %>
+        <img src=<%= current_user.image %> class="icon_image">
+        <a href="/users/<%= current_user.id %>"><%= current_user.username %></a>
+        <hr>
+        <h2>トーク</h2>
+        <% @users.each do |u| %>
+        <% if current_user!=u%>
 
 
-<p><img src=<%= u.image %> class="icon_image"><a href="/users/<%= u.id %>"><%= u.username %></a></p>
-<hr>
-<% end %>
-<% end %>
-<%= link_to "ログアウト", destroy_user_session_path, :method => :delete %>
-<% else %>
-<%= link_to "ユーザーを登録する", new_user_registration_path %>
-<br>
-<%= link_to "ログインする", new_user_session_path %>
-<% end %>
+        <p><img src=<%= u.image %> class="icon_image"><a href="/users/<%= u.id %>"><%= u.username %></a></p>
+        <hr>
+        <% end %>
+        <% end %>
+        <%= link_to "ログアウト", destroy_user_session_path, :method => :delete %>
+        <% else %>
+        <%= link_to "ユーザーを登録する", new_user_registration_path %>
+        <br>
+        <%= link_to "ログインする", new_user_session_path %>
+        <% end %>
+    </div>
+
+</div>
