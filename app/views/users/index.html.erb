@@ -11,15 +11,20 @@
     <div class="home-container">
 
         <% if user_signed_in? %>
-        <img src=<%= current_user.image %> class="icon_image">
-        <a href="/users/<%= current_user.id %>"><%= current_user.username %></a>
+
+        <div class="user">
+            <img src=<%= current_user.image %> class="icon_image">
+            <a class="username" href="/users/<%= current_user.id %>"><%= current_user.username %></a>
+        </div>
         <hr>
         <h2>トーク</h2>
         <% @users.each do |u| %>
         <% if current_user!=u%>
 
-
-        <p><img src=<%= u.image %> class="icon_image"><a href="/users/<%= u.id %>"><%= u.username %></a></p>
+        <div class="user">
+            <img src=<%= u.image %> class="icon_image"><a class="username"
+                href="/users/<%= u.id %>"><%= u.username %></a>
+        </div>
         <hr>
         <% end %>
         <% end %>
